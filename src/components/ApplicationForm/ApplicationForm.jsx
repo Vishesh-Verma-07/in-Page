@@ -18,6 +18,10 @@ import { Input } from "../../components/ui/input";
 import styles from "./ApplicationForm.module.css";
 import { ArrowDown } from "lucide-react";
 import { Textarea } from "../ui/TextArea";
+import { AuthService } from "../../axios/user";
+
+
+const apiClass = new AuthService();
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -82,6 +86,7 @@ const ApplicationForm = ({ selectedInternshipId }) => {
   const onSubmit = (data) => {
     setIsSubmitting(true);
 
+
     let progressVal = 0;
     const interval = setInterval(() => {
       progressVal += 10;
@@ -95,7 +100,20 @@ const ApplicationForm = ({ selectedInternshipId }) => {
         setProgress(0);
       }
     }, 300);
+    handleForm(data);
   };
+
+  const handleForm = async (data) => {
+    try {
+      const response = await apiClass.internshipFormSubmit(data);
+      if (response.status === 201) {
+        // notifySuccess("Form submitted successfully!");
+      }
+    } catch (error) {
+      console.error("Submission Error:", error.response?.data || error.message);
+      // notifyError("Try again later");
+    }
+  }
 
   const handleFileChange = (event) => {
     const file = event.target.files?.[0];
@@ -116,60 +134,36 @@ const ApplicationForm = ({ selectedInternshipId }) => {
   return (
     <section
       id="apply"
-      style={{
-        padding: "2rem",
-        background: "linear-gradient(to bottom, #f8f9fa,rgb(230, 237, 255))",
-      }}
+      className={styles.section}
     >
-      <div style={{ maxWidth: "768px", margin: "0 auto" }}>
+      <div className={styles.header}>
         <h2
-          style={{
-            fontSize: "2rem",
-            fontWeight: "bold",
-            textAlign: "center",
-            marginBottom: "1rem",
-          }}
+          className={styles.heading}
         >
           Apply for Internships
         </h2>
         <p
-          style={{
-            textAlign: "center",
-            color: "#6c757d",
-            marginBottom: "2rem",
-          }}
+          className={styles.text}
         >
           Fill out the form below to apply for your selected internship
           opportunity
         </p>
 
         <div
-          style={{
-            background: "#fff",
-            borderRadius: "0.5rem",
-            boxShadow: "0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)",
-            padding: "1.5rem",
-            border: "1px solid #dee2e6",
-          }}
+          className={styles.container2}
         >
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1.5rem",
-              }}
+              className={styles.form}
             >
               {/* Personal Information */}
               <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1rem",
-                }}
+                className={styles.section2}
               >
-                <h3 style={{ fontSize: "1.2rem", fontWeight: "500" }}>
+                <h3 className={styles
+                  .sectionTitle
+                }>
                   Personal Information
                 </h3>
 
@@ -188,11 +182,7 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                 />
 
                 <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "1rem",
-                  }}
+                className={styles.gridTwoCols}
                 >
                   <FormField
                     control={form.control}
@@ -230,13 +220,9 @@ const ApplicationForm = ({ selectedInternshipId }) => {
 
               {/* Education Information */}
               <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1rem",
-                }}
+                 className={styles.education}
               >
-                <h3 style={{ fontSize: "1.25rem", fontWeight: "500" }}>
+                <h3 className={styles.educationText}>
                   Education
                 </h3>
 
@@ -258,11 +244,7 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                 />
 
                 <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "1rem",
-                  }}
+            className={styles.program}
                 >
                   <FormField
                     control={form.control}
@@ -288,13 +270,7 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                       <FormItem>
                         <FormLabel>Year of Study</FormLabel>
                         <select
-                          style={{
-                            width: "100%",
-                            borderRadius: "0.25rem",
-                            border: "1px solid #ced4da",
-                            padding: "0.5rem",
-                            fontSize: "0.9rem",
-                          }}
+                         className={styles.select}
                           {...field}
                         >
                           {yearOptions.map((option) => (
@@ -312,8 +288,9 @@ const ApplicationForm = ({ selectedInternshipId }) => {
 
               {/* Additional sections */}
               {/* Add similar inline styles for other sections */}
-              <div style={{ marginBottom: "1.5rem" }}>
-                <h3 style={{ fontSize: "1.25rem", fontWeight: "500" }}>
+              <div className={styles.internshipGroup}>
+                <h3 className={styles.educationText
+                }>
                   Internship Selection
                 </h3>
 
@@ -322,18 +299,14 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                   name="internships"
                   render={() => (
                     <FormItem>
-                      <div style={{ marginBottom: "1rem" }}>
+                      <div className={styles.selectIn}>
                         <FormLabel>Select Internship(s)</FormLabel>
                         <FormDescription>
                           Choose one or more internships you want to apply for
                         </FormDescription>
                       </div>
                       <div
-                        style={{
-                          display: "flex",
-                          flexWrap: "wrap",
-                          gap: "0.5rem",
-                        }}
+                       className={styles.internshipWrap}
                       >
                         {INTERNSHIPS.map((internship) => (
                           <FormField
@@ -344,11 +317,9 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                               return (
                                 <FormItem
                                   key={internship.id}
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "0.5rem",
-                                  }}
+                                  
+                                  className ={styles.selectIntern}
+                              
                                 >
                                   <FormControl>
                                     <input
@@ -360,35 +331,24 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                                         const checked = e.target.checked;
                                         return checked
                                           ? field.onChange([
-                                              ...field.value,
-                                              internship.id,
-                                            ])
+                                            ...field.value,
+                                            internship.id,
+                                          ])
                                           : field.onChange(
-                                              field.value?.filter(
-                                                (value) =>
-                                                  value !== internship.id
-                                              )
-                                            );
+                                            field.value?.filter(
+                                              (value) =>
+                                                value !== internship.id
+                                            )
+                                          );
                                       }}
                                     />
                                   </FormControl>
                                   <FormLabel
-                                    style={{
-                                      fontSize: "0.875rem",
-                                      fontWeight: "400",
-                                    }}
+                                  className = {styles.internshipLabel}
                                   >
                                     {internship.title}
                                     <span
-                                      style={{
-                                        marginLeft: "0.5rem",
-                                        fontSize: "0.75rem",
-                                        border: "1px solid #ced4da",
-                                        borderRadius: "1rem",
-                                        padding: "0.25rem",
-                                        paddingLeft: "0.5rem",
-                                        paddingRight: "0.5rem",
-                                      }}
+                                     className={styles.internshipTag}
                                     >
                                       {internship.department}
                                     </span>
@@ -406,22 +366,14 @@ const ApplicationForm = ({ selectedInternshipId }) => {
               </div>
 
               <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1.5rem",
-                }}
+              className={styles.additionalSection}
               >
-                <h3 style={{ fontSize: "1.25rem", fontWeight: "500" }}>
+                <h3 className={styles.educationText}>
                   Additional Information
                 </h3>
 
                 <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "1rem",
-                  }}
+               className={styles.gridTwoCols}
                 >
                   <FormField
                     control={form.control}
@@ -430,7 +382,7 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                       <FormItem>
                         <FormLabel>
                           LinkedIn Profile URL{" "}
-                          <span style={{ color: "#6c757d" }}>(Optional)</span>
+                          <span className={styles.optionalText}>(Optional)</span>
                         </FormLabel>
                         <FormControl>
                           <Input
@@ -450,7 +402,7 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                       <FormItem>
                         <FormLabel>
                           Portfolio/Project URL{" "}
-                          <span style={{ color: "#6c757d" }}>(Optional)</span>
+                          <span className={styles.optionalText}>(Optional)</span>
                         </FormLabel>
                         <FormControl>
                           <Input
@@ -471,17 +423,13 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                     <FormItem>
                       <FormLabel>
                         Resume Upload{" "}
-                        <span style={{ color: "#6c757d" }}>
+                        <span className={styles.optionalText}>
                           (PDF only, max 2MB)
                         </span>
                       </FormLabel>
                       <FormControl>
                         <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "0.5rem",
-                          }}
+                         className={styles.fileInputWrap}
                         >
                           <Input
                             type="file"
@@ -492,7 +440,7 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                         </div>
                       </FormControl>
                       {selectedFile && (
-                        <p style={{ fontSize: "0.875rem", color: "#6c757d" }}>
+                        <p  className={styles.selectedFile}>
                           Selected file: {selectedFile.name}
                         </p>
                       )}
@@ -508,24 +456,26 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                     <FormItem>
                       <FormLabel>
                         Why do you want this internship?{" "}
-                        <span style={{ color: "#6c757d" }}>(50-300 words)</span>
+                        <span className={styles.optionalText}>(50-300 words)</span>
                       </FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder="Tell us why you're interested in this internship and what you hope to achieve..."
+
                           style={{
                             minHeight: "120px",
-                            width: "100%",
                             border: "1px solid #ced4da",
-                            borderRadius: "12px",
+                           width: "100%",
+                             borderRadius: "12px",
                             padding: "0.5rem",
                             fontSize: "1rem",
                           }}
+
                           {...field}
                         />
                       </FormControl>
                       <FormDescription
-                        style={{ fontSize: "0.875rem", color: "#6c757d" }}
+                        className = {styles.wordCount}
                       >
                         Word count:{" "}
                         {field.value.trim().split(/\s+/).filter(Boolean).length}
@@ -541,32 +491,24 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                 name="consent"
                 render={({ field }) => (
                   <FormItem
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "flex-start",
-                      gap: "0.75rem",
-                    }}
+                  className = { styles.checkboxRow}
                   >
                     <FormControl>
                       <input
                         type="checkbox"
                         checked={field.value}
                         onChange={field.onChange}
-                        style={{
-                          width: "1rem",
-                          height: "1rem",
-                          cursor: "pointer",
-                        }}
+                         className={styles.checkboxInput}
                       />
                     </FormControl>
                     <div
-                      style={{ fontSize: "0.875rem", lineHeight: "1.25rem" }}
+
+                     className={styles.checkboxText }
                     >
-                      <FormLabel style={{ fontWeight: "500" }}>
+                      <FormLabel className = { styles.checkboxLabel}>
                         I agree to the terms and conditions
                       </FormLabel>
-                      <FormDescription style={{ color: "#6c757d" }}>
+                      <FormDescription className = {styles.checkboxDescription}>
                         By checking this box, you agree that we may contact you
                         regarding your application.
                       </FormDescription>
@@ -603,7 +545,7 @@ const ApplicationForm = ({ selectedInternshipId }) => {
             >
                 {isSubmitting ? "Submitting..." : "Submit Application"}
             </button>} */}
-              <button className={styles.button} onClick={() => {}}>
+              <button className={styles.button} onClick={() => { }}>
                 Submit Application
               </button>
             </form>

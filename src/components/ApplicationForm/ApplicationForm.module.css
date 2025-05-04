@@ -1,12 +1,208 @@
 /* ApplicationForm.module.css */
+/* FormSection.module.css */
 
+.container2 {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  padding: 1.5rem;
+  border: 1px solid #dee2e6;
+}
+.header{
+   max-width: 768px ;
+   margin: 0 auto ;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section2 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.gridTwoCols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.select {
+  width: 100%;
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.internshipGroup {
+  margin-bottom: 1.5rem;
+}
+
+.internshipWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.internshipItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.internshipLabel {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.internshipTag {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 1rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.additionalSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.optionalText {
+  color: #6c757d;
+}
+
+.fileInputWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.selectedFile {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.textarea {
+  min-height: 120px;
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius: 12px;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.Textarea {
+  min-height: 120px;
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius: 12px;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+
+.wordCount {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.checkboxRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkboxInput {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+.education{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem
+}
+.educationText{
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+.program{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem
+}
+.checkboxText {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.checkboxLabel {
+  font-weight: 500;
+}
+
+.checkboxDescription {
+  color: #6c757d;
+}
+
+.button {
+  width: 100%;
+  background-color: #6c63ff;
+  color: #fff;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.section {
+  padding: 2rem;
+  background: linear-gradient(to bottom, #f8f9fa,rgb(230, 237, 255));
+}
+.heading{
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.text{
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 2rem;
+}
 .container {
     padding: 1rem;
     background: linear-gradient(to bottom, #ffffff, #b2eaf3);
     border-radius: 1rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
-  
+  .selectIn{
+    margin-bottom: 1rem ;
+  }
+  .selectIntern{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem
+  }
   .heading {
     font-size: 1.75rem;
     font-weight: bold;
