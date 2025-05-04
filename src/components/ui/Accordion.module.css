@@ -1,0 +1,73 @@
+@keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  
+  .accordionItem {
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .accordionHeader {
+    display: flex;
+  }
+  
+  .accordionTrigger {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    background: none;
+    border: none;
+  }
+  
+  .accordionTrigger:hover {
+    text-decoration: underline;
+  }
+  
+  .chevronIcon {
+    height: 16px;
+    width: 16px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+  
+  [data-state="open"] > .chevronIcon {
+    transform: rotate(180deg);
+  }
+  
+  /* Apply animations on the content itself, not globally */
+  .accordionContent {
+    overflow: hidden;
+    font-size: 0.95rem;
+  }
+  
+  .accordionContent[data-state="open"] {
+    animation: accordion-down 0.3s ease forwards;
+  }
+  
+  .accordionContent[data-state="closed"] {
+    animation: accordion-up 0.3s ease forwards;
+  }
+  
+  .contentInner {
+    padding: 0 0 16px 0;
+  }
+  

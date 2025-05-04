@@ -1,0 +1,52 @@
+.faqSection {
+    padding: 80px 20px;
+    background-color: #f9f9fb;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #2e2e2e;
+  }
+  
+  .accordion {
+    width: 100%;
+  }
+  
+  .accordionItem {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  
+  .accordionTrigger {
+    padding: 16px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: #333333;
+  }
+  
+  .accordionTrigger:hover {
+    color: #7a38f1;
+    text-decoration: none;
+  }
+  
+  .accordionContent {
+    padding: 0 20px 16px;
+    color: #555555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
