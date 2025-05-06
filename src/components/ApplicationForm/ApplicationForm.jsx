@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { INTERNSHIPS } from "./InternshipList";
-// import styles from "../HeroSection/HeroSection"; // Removed as it is not used or incorrectly imported
 
 import {
   Form,
@@ -16,7 +15,6 @@ import {
 } from "../../components/ui/Form";
 import { Input } from "../../components/ui/input";
 import styles from "./ApplicationForm.module.css";
-import { ArrowDown } from "lucide-react";
 import { Textarea } from "../ui/TextArea";
 
 const formSchema = z.object({
