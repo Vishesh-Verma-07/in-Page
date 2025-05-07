@@ -17,6 +17,7 @@ import { Input } from "../../components/ui/input";
 import styles from "./ApplicationForm.module.css";
 import { Textarea } from "../ui/TextArea";
 import { AuthService } from "../../axios/user";
+import { Progress } from "../ui/progress";
 
 
 const apiClass = new AuthService();
@@ -104,6 +105,7 @@ const ApplicationForm = ({ selectedInternshipId }) => {
   const handleForm = async (data) => {
     try {
       const response = await apiClass.internshipFormSubmit(data);
+      console.log("Form submitted successfully:", response.data);
       if (response.status === 201) {
         // notifySuccess("Form submitted successfully!");
       }
@@ -515,34 +517,16 @@ const ApplicationForm = ({ selectedInternshipId }) => {
                   </FormItem>
                 )}
               />
+
               {isSubmitting && (
                 <div className="space-y-2">
-                  {/* <Progress value={progress} className="w-full" /> */}
+                  <Progress value={progress} className="w-full" />
                   <p className="text-sm text-center text-muted-foreground">
                     Submitting your application...
                   </p>
                 </div>
               )}
 
-              {/* <button
-                type="submit"
-                style={{
-                    width: "100%",
-                    backgroundColor: "#6c63ff",
-                    color: "#fff",
-                    padding: "0.75rem",
-                    fontSize: "1rem",
-                    fontWeight: "bold",
-                    border: "none",
-                    borderRadius: "0.25rem",
-                    cursor: isSubmitting ? "not-allowed" : "pointer",
-                    opacity: isSubmitting ? 0.7 : 1,
-                    transition: "background-color 0.3s ease",
-                }}
-                disabled={isSubmitting}
-            >
-                {isSubmitting ? "Submitting..." : "Submit Application"}
-            </button>} */}
               <button className={styles.button} onClick={() => { }}>
                 Submit Application
               </button>

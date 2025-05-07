@@ -33,7 +33,7 @@
   }
   
   .heroHighlight {
-    color: #A78BFA;
+    color: rgb(0, 71, 178);
   }
   
   .heroSubtitle {
@@ -48,7 +48,7 @@
     margin-top: 2rem;
     font-size: 1.125rem;
     padding: 1rem 2rem;
-    background-color: #A78BFA;
+    background-color: rgb(0, 71, 178);
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -61,7 +61,7 @@
   }
   
   .heroButton:hover {
-    background-color: #5B21B6;
+    background-color: rgb(36, 137, 211);
     transform: translateY(-2px);
   }
   
