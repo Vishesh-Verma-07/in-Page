@@ -22,7 +22,7 @@ const Progress = React.forwardRef(({ className, value, ...props }, ref) => (
                 height: "100%", // h-full
                 width: "100%", // w-full
                 flex: "1", // flex-1
-                backgroundColor: "hsl(252, 77%, 74%)", // bg-primary
+                backgroundColor: "rgb(0, 71, 178)", // bg-primary
                 transition: "all 0.2s ease-in-out", // transition-all
                 transform: `translateX(-${100 - (value || 0)}%)`,
             }}
